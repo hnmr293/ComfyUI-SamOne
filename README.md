@@ -8,6 +8,8 @@ ComfyUI でサンプリングを1ステップだけ進めるノードです。
 
 ### SamplerOne
 
+![node image](./assets/image.png)
+
 サンプリングを1ステップだけ進めるノードです。
 
 | in/out | name | type | Description |
@@ -30,3 +32,5 @@ ComfyUI でサンプリングを1ステップだけ進めるノードです。
 ## Example workflow
 
 [sample workflow (JSON)](./assets/SamOneTest.json)
+
+![sample image](./assets/sample.png)
