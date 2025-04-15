@@ -37,8 +37,8 @@ class SamplerOne:
         sigma_from: float,
         sigma_to: float,
         model_scaling_in: bool,
-        latent_image: dict = None,
-        sampler_seed: int = None,
+        latent_image: dict | None = None,
+        sampler_seed: int | None = None,
     ):
         noise: torch.Tensor = latent["samples"]
         latent_mask = latent["mask"] if "mask" in latent else None

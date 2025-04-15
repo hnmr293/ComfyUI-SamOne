@@ -25,8 +25,8 @@ class Latent:
     CATEGORY = "hnmr/samone"
 
     def _parse_shape(self, shape: str):
-        shape = shape.strip("()").split(",")
-        return tuple(map(int, shape))
+        dims = shape.strip("()").split(",")
+        return tuple(map(int, dims))
 
     def generate_noise(self, shape: str, noise: Noise_EmptyNoise, dtype: str):
         try:
@@ -38,8 +38,8 @@ class Latent:
             raise ValueError("Shape cannot be empty.")
 
         device = comfy.model_management.intermediate_device()
-        dtype = getattr(torch, dtype)
+        dtype_ = getattr(torch, dtype)
 
-        latent_image = {"samples": torch.zeros(s, device=device, dtype=dtype)}
+        latent_image = {"samples": torch.zeros(s, device=device, dtype=dtype_)}
         latent = {"samples": noise.generate_noise(latent_image)}
         return (latent, latent_image)
