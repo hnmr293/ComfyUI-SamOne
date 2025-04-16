@@ -59,6 +59,8 @@ class SamplerOne:
 
         inner_model: BaseModel = guider.model_patcher.model
         model_sampling = inner_model.model_sampling
+        if "model_sampling" in (guider.model_patcher.object_patches or {}):
+            model_sampling = guider.model_patcher.object_patches["model_sampling"]
         orig_latent_in = inner_model.process_latent_in
         orig_latent_out = inner_model.process_latent_out
         orig_noise_scaling = model_sampling.noise_scaling
