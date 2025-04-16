@@ -141,7 +141,7 @@ class SamplerOne:
             return x
 
         non_scaled_out = latent.copy()
-        non_scaled_out["samples"] = fixup(non_scaled_latent2)
+        non_scaled_out["samples"] = fixup(non_scaled_latent1)
 
         model_input_ = {"samples": fixup(model_input)}
         model_output_ = {"samples": fixup(model_output)}
