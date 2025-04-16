@@ -112,7 +112,7 @@ class SamplerOne:
             pass
 
         try:
-            samples = guider.sample(
+            samples: torch.Tensor = guider.sample(
                 noise=noise,
                 latent_image=ref_latent,
                 sampler=sampler,
@@ -135,10 +135,15 @@ class SamplerOne:
         out = latent.copy()
         out["samples"] = samples
 
-        non_scaled_out = latent.copy()
-        non_scaled_out["samples"] = non_scaled_latent2
+        def fixup(x: torch.Tensor | None):
+            if x is not None:
+                x = x.to(samples.device)
+            return x
 
-        model_input_ = {"samples": model_input}
-        model_output_ = {"samples": model_output}
+        non_scaled_out = latent.copy()
+        non_scaled_out["samples"] = fixup(non_scaled_latent2)
+
+        model_input_ = {"samples": fixup(model_input)}
+        model_output_ = {"samples": fixup(model_output)}
 
         return (out, non_scaled_out, model_input_, model_output_)
